@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { addColor } from "../controllers/colors.js";
+import { addColor, getAllColors } from "../controllers/colors.js";
 
 const router = Router();
 
-// Routes
-
-router.post("/add-color", addColor);
+//"/api/v1/colors";
+router.get("/", getAllColors);
+router.post("/", addColor);
 
 export default router;

@@ -5,7 +5,7 @@ export class Tax extends Model {}
 
 Tax.init(
   {
-    taxId: {
+    tax_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,

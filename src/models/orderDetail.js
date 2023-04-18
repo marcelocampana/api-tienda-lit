@@ -6,7 +6,7 @@ import { Product } from "./product.js";
 export class OrderDetail extends Model {}
 OrderDetail.init(
   {
-    orderDetailId: {
+    order_detail_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,

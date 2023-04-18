@@ -2,11 +2,11 @@
   "name": "api-lit-store",
   "version": "1.0.0",
   "description": "API Lit Store",
-  "main": "src/app.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/server.js"
   },
   "author": "Marcelo Campaña",
   "license": "ISC",

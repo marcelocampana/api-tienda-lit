@@ -9,11 +9,11 @@ import {
 
 const router = Router();
 
-// Routes
-router.get("/category/:id", getCategory);
+// "/api/v1/categories";
+router.get("/:id", getCategory);
 router.get("/", getAllCategories);
-router.post("/add-category", addCategory);
-router.put("/update-category/:id", updateCategory);
-router.delete("/delete-category/:id", deleteCategory);
+router.post("/", addCategory);
+router.put("/:id", updateCategory);
+router.delete("/:id", deleteCategory);
 
 export default router;

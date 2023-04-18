@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 const app = express();
 import { categories, colors, products, shoppingCarts } from "./routes/index.js";
 import {
@@ -17,17 +16,16 @@ import {
 import modelSync from "./utils/modelSync.js";
 
 // Middlewares
-app.set("port", process.env.PORT || 3001);
+app.set("port", process.env.PORT || 4000);
 app.use(express.json());
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-//static files
-app.use(express.static(path.join(__dirname, "./public")));
-// API Routes
-app.use("/api/categories", categories);
-app.use("/api/colors", colors);
-app.use("/api/products", products);
-app.use("/api/cart", shoppingCarts);
 
+// API Routes
+app.use("/api/v1/categories", categories);
+app.use("/api/v1/colors", colors);
+app.use("/api/v1/products", products);
+app.use("/api/v1/cart", shoppingCarts);
+
+//DB Sync
 (async function () {
   await modelSync(Category);
   await modelSync(Color);

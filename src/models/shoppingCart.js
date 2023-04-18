@@ -15,7 +15,7 @@ export class ShoppingCart extends Model {
 
 ShoppingCart.init(
   {
-    shoppingCartId: {
+    shopping_cart_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -25,7 +25,7 @@ ShoppingCart.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    userId: {
+    user_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {

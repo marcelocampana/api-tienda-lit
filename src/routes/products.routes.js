@@ -7,8 +7,8 @@ import {
 
 const router = Router();
 
-// Routes
-router.get("/product/:id", getProduct);
+// "/api/v1/products"
+router.get("/:id", getProduct);
 router.get("/", getAllProducts);
 router.post("/", addProduct);
 // router.put("/update-category/:id", updateCategory);

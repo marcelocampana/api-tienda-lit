@@ -33,7 +33,7 @@ Order.init(
       type: DataTypes.NUMERIC(10, 2),
       allowNull: false,
     },
-    userId: {
+    user_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {

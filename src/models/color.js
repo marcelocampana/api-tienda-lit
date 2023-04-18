@@ -1,6 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
-import { Product } from "./product.js";
 
 export class Color extends Model {
   static async addColor(data) {
@@ -11,10 +10,18 @@ export class Color extends Model {
       return { success: false, error };
     }
   }
+  static async getAllColors() {
+    try {
+      const colors = await this.findAll();
+      return { success: true, colors };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
 }
 Color.init(
   {
-    colorId: {
+    color_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,

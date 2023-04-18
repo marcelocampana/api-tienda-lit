@@ -4,7 +4,7 @@ import sequelize from "../services/db_connection.js";
 export class CouponDiscount extends Model {}
 CouponDiscount.init(
   {
-    couponsDiscountId: {
+    coupon_discount_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -14,7 +14,7 @@ CouponDiscount.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    discountType: {
+    discount_type: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -22,11 +22,11 @@ CouponDiscount.init(
       type: DataTypes.NUMERIC(10),
       allowNull: false,
     },
-    startDate: {
+    start_date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    endDate: {
+    end_date: {
       type: DataTypes.DATE,
       allowNull: false,
     },
@@ -37,7 +37,7 @@ CouponDiscount.init(
   {
     sequelize,
     modelName: "CouponDiscount",
-    tableName: "coupons_discounts",
+    tableName: "coupon_discounts",
     underscored: true,
   }
 );

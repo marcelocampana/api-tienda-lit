@@ -5,7 +5,7 @@ export class ShippingMethod extends Model {}
 
 ShippingMethod.init(
   {
-    ShippingMethodId: {
+    shipping_method_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -19,7 +19,7 @@ ShippingMethod.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    deliveryTime: {
+    delivery_time: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

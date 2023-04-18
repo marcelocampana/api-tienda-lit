@@ -4,7 +4,7 @@ import sequelize from "../services/db_connection.js";
 export class PaymentMethod extends Model {}
 PaymentMethod.init(
   {
-    paymentMethodId: {
+    payment_method_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
