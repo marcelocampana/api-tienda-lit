@@ -1,6 +1,13 @@
 import express from "express";
 const app = express();
-import { categories, colors, products, shoppingCarts } from "./routes/index.js";
+import {
+  categories,
+  colors,
+  products,
+  sizes,
+  variants,
+  shoppingCarts,
+} from "./routes/index.js";
 import {
   Category,
   Color,
@@ -33,8 +40,10 @@ app.use(function (req, res, next) {
 // API Routes
 app.use("/api/v1/categories", categories);
 app.use("/api/v1/colors", colors);
+app.use("/api/v1/sizes", sizes);
 app.use("/api/v1/products", products);
-app.use("/api/v1/cart", shoppingCarts);
+app.use("/api/v1/variants", variants);
+app.use("/api/v1/carts", shoppingCarts);
 
 //DB Sync
 (async function () {
@@ -42,8 +51,8 @@ app.use("/api/v1/cart", shoppingCarts);
   // await modelSync(User);
   // await modelSync(Color);
   // await modelSync(Size);
-  // await modelSync(Product);
-  // await modelSync(Variant);
+  //await modelSync(Product);
+  await modelSync(Variant);
   // await modelSync(CouponDiscount);
   // await modelSync(PaymentMethod);
   // await modelSync(Tax);

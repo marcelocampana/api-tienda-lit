@@ -81,5 +81,9 @@ Category.init(
   }
 );
 
-Category.hasMany(Product, { foreignKey: "category_id" });
-Product.belongsTo(Category, { foreignKey: "category_id", as: "category" });
+Category.hasMany(Product, {
+  foreignKey: { name: "category_id", allowNull: false },
+});
+Product.belongsTo(Category, {
+  foreignKey: { name: "category_id", allowNull: false, as: "category" },
+});

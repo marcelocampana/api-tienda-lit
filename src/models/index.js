@@ -2,7 +2,7 @@ import { Category } from "./category.js";
 import { User } from "./user.js";
 import { Color } from "./color.js";
 import { Size } from "./size.js";
-import { Variant } from "./variants.js";
+import { Variant } from "./variant.js";
 import { Product } from "./product.js";
 import { Order } from "./order.js";
 import { OrderDetail } from "./orderDetail.js";

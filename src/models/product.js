@@ -102,10 +102,10 @@ Product.init(
       type: DataTypes.NUMERIC(10),
       allowNull: false,
     },
-    category_id: {
+    /*     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
+    }, */
   },
   {
     sequelize,
