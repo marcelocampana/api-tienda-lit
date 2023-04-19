@@ -1,4 +1,4 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
 import { Color } from "./color.js";
 import { Category } from "./category.js";
@@ -76,7 +76,7 @@ export class Product extends Model {
 
 Product.init(
   {
-    productId: {
+    product_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -90,7 +90,7 @@ Product.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    imageUrl: {
+    image_url: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -102,19 +102,11 @@ Product.init(
       type: DataTypes.NUMERIC(10),
       allowNull: false,
     },
-    weight: {
-      type: DataTypes.NUMERIC(10, 2),
-    },
-    color_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
-
   {
     sequelize,
     modelName: "Product",
@@ -122,6 +114,3 @@ Product.init(
     underscored: true,
   }
 );
-
-Color.hasMany(Product, { foreignKey: "color_id" });
-Product.belongsTo(Color, { foreignKey: "color_id", as: "color" });

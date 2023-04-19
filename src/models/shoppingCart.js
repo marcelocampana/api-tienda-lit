@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
 import { Product } from "./product.js";
+import { User } from "./user.js";
 
 export class ShoppingCart extends Model {
   static async addProductToCart(data) {
@@ -25,17 +26,6 @@ ShoppingCart.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      references: {
-        model: {
-          tableName: "users",
-          schema: "auth",
-        },
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
@@ -52,4 +42,11 @@ ShoppingCart.belongsTo(Product, {
 Product.hasMany(ShoppingCart, {
   foreignKey: "product_id",
   onDelete: "CASCADE",
+});
+
+ShoppingCart.belongsTo(User, {
+  foreignKey: "user_id",
+});
+User.hasMany(ShoppingCart, {
+  foreignKey: "user_id",
 });

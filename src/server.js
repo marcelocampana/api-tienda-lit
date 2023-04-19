@@ -12,12 +12,23 @@ import {
   ShippingMethod,
   Tax,
   ShoppingCart,
+  Size,
+  Variant,
+  User,
 } from "./models/index.js";
 import modelSync from "./utils/modelSync.js";
 
 // Middlewares
 app.set("port", process.env.PORT || 4000);
 app.use(express.json());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 // API Routes
 app.use("/api/v1/categories", categories);
@@ -27,16 +38,19 @@ app.use("/api/v1/cart", shoppingCarts);
 
 //DB Sync
 (async function () {
-  await modelSync(Category);
-  await modelSync(Color);
-  await modelSync(Product);
-  await modelSync(CouponDiscount);
-  await modelSync(PaymentMethod);
-  await modelSync(Tax);
-  await modelSync(Order);
-  await modelSync(OrderDetail);
-  await modelSync(ShippingMethod);
-  await modelSync(ShoppingCart);
+  // await modelSync(Category);
+  // await modelSync(User);
+  // await modelSync(Color);
+  // await modelSync(Size);
+  // await modelSync(Product);
+  // await modelSync(Variant);
+  // await modelSync(CouponDiscount);
+  // await modelSync(PaymentMethod);
+  // await modelSync(Tax);
+  // await modelSync(Order);
+  // await modelSync(OrderDetail);
+  // await modelSync(ShippingMethod);
+  // await modelSync(ShoppingCart);
 
   app.listen(app.get("port"), () => {
     console.log(`Server on http://localhost:${app.get("port")}`);

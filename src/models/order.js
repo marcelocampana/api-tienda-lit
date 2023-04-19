@@ -3,6 +3,7 @@ import sequelize from "../services/db_connection.js";
 import { PaymentMethod } from "./paymentMethod.js";
 import { CouponDiscount } from "./couponDiscount.js";
 import { Tax } from "./tax.js";
+import { User } from "./user.js";
 
 export class Order extends Model {}
 Order.init(
@@ -33,17 +34,6 @@ Order.init(
       type: DataTypes.NUMERIC(10, 2),
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      references: {
-        model: {
-          tableName: "users",
-          schema: "auth",
-        },
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
@@ -52,6 +42,9 @@ Order.init(
     underscored: true,
   }
 );
+
+Order.belongsTo(User, { foreignKey: "user_id" });
+User.hasMany(Order, { foreignKey: "user_id" });
 
 Order.belongsTo(CouponDiscount, { foreignKey: "coupon_discount_id" });
 CouponDiscount.hasMany(Order, { foreignKey: "coupon_discount_id" });
