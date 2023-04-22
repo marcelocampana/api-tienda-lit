@@ -16,7 +16,7 @@ export class Product extends Model {
   static async getAllProducts() {
     try {
       const products = await this.findAll({
-        include: [
+        /*   include: [
           {
             model: Color,
             attributes: ["name"],
@@ -27,7 +27,7 @@ export class Product extends Model {
             attributes: ["name"],
             as: "category",
           },
-        ],
+        ], */
         raw: true,
       });
       return { success: true, products };
