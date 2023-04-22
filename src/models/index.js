@@ -1,5 +1,6 @@
 import { Category } from "./category.js";
 import { User } from "./user.js";
+import { Role } from "./role.js";
 import { Color } from "./color.js";
 import { Size } from "./size.js";
 import { Variant } from "./variants.js";
@@ -15,6 +16,7 @@ import { PaymentMethod } from "./paymentMethod.js";
 export {
   Category,
   User,
+  Role,
   Color,
   Size,
   Variant,

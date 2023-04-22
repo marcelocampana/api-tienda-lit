@@ -1,6 +1,12 @@
 import express from "express";
 const app = express();
-import { categories, colors, products, shoppingCarts } from "./routes/index.js";
+import {
+  categories,
+  colors,
+  products,
+  shoppingCarts,
+  users,
+} from "./routes/index.js";
 import {
   Category,
   Color,
@@ -15,6 +21,7 @@ import {
   Size,
   Variant,
   User,
+  Role,
 } from "./models/index.js";
 import modelSync from "./utils/modelSync.js";
 
@@ -35,14 +42,16 @@ app.use("/api/v1/categories", categories);
 app.use("/api/v1/colors", colors);
 app.use("/api/v1/products", products);
 app.use("/api/v1/cart", shoppingCarts);
+app.use("/api/auth", users);
 
 //DB Sync
 (async function () {
   // await modelSync(Category);
-  // await modelSync(User);
+  //await modelSync(Role);
+  //await modelSync(User);
   // await modelSync(Color);
   // await modelSync(Size);
-  // await modelSync(Product);
+  //await modelSync(Product);
   // await modelSync(Variant);
   // await modelSync(CouponDiscount);
   // await modelSync(PaymentMethod);

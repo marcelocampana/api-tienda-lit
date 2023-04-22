@@ -16,18 +16,6 @@ export class Product extends Model {
   static async getAllProducts() {
     try {
       const products = await this.findAll({
-        include: [
-          {
-            model: Color,
-            attributes: ["name"],
-            as: "color",
-          },
-          {
-            model: Category,
-            attributes: ["name"],
-            as: "category",
-          },
-        ],
         raw: true,
       });
       return { success: true, products };
@@ -97,6 +85,7 @@ Product.init(
     sku: {
       type: DataTypes.TEXT,
       allowNull: false,
+      unique: true,
     },
     price: {
       type: DataTypes.NUMERIC(10),
