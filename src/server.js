@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 import {
+  auth,
   categories,
   colors,
   products,
@@ -42,7 +43,8 @@ app.use("/api/v1/categories", categories);
 app.use("/api/v1/colors", colors);
 app.use("/api/v1/products", products);
 app.use("/api/v1/cart", shoppingCarts);
-app.use("/api/auth", users);
+app.use("/api/users", users);
+app.use("/api/v1/auth", auth);
 
 //DB Sync
 (async function () {

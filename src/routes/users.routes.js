@@ -4,7 +4,7 @@ import { getUser, addUser } from "../controllers/users.js";
 const router = Router();
 
 // "/api/auth/";
-router.post("/token", getUser);
-router.post("/", addUser);
+router.post("/token", addUser);
+router.post("/", getUser);
 
 export default router;

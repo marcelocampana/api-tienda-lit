@@ -1,16 +1,18 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
+import bcrypt from "bcrypt";
 import { Role } from "./role.js";
 
 export class User extends Model {
-  static async getUser(data) {
-    console.log(data);
+  static async getUser(email) {
+    console.log("data-getUser", email);
     try {
       const users = await User.findOne({
         where: {
-          email: data.email,
+          email: email,
         },
         attributes: [
+          [sequelize.col("User.user_id"), "userId"],
           [sequelize.col("User.name"), "userName"],
           "email",
           "password",
@@ -25,12 +27,29 @@ export class User extends Model {
   }
 
   static async addUser(data) {
+    console.log("data-addUser", data);
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+
     try {
       const newUser = await this.create({
+        name: "Nombre",
         email: data.email,
-        password: data.password,
+        password: bcrypt.hashSync(data.password, salt),
       });
-      return { success: true, user: newUser };
+      const user = await User.findOne({
+        where: {
+          email: newUser.email,
+        },
+        attributes: [
+          [sequelize.col("User.name"), "userName"],
+          "email",
+          "password",
+          [sequelize.col("Role.name"), "roleName"],
+        ],
+        include: { model: Role, attributes: [] },
+      });
+      return { success: true, user };
     } catch (error) {
       return { success: false, error };
     }
