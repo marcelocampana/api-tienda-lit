@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
-import bcrypt from "bcrypt";
 import { Role } from "./role.js";
+import { hashPassword } from "../utils/hashPassword.js";
 
 export class User extends Model {
   static async getUser(email) {
@@ -27,15 +27,12 @@ export class User extends Model {
   }
 
   static async addUser(data) {
-    console.log("data-addUser", data);
-    const saltRounds = 10;
-    const salt = bcrypt.genSaltSync(saltRounds);
-
     try {
+      const hashedPassword = await hashPassword(data.password);
       const newUser = await this.create({
-        name: "Nombre",
+        name: data.name,
         email: data.email,
-        password: bcrypt.hashSync(data.password, salt),
+        password: hashedPassword,
       });
       const user = await User.findOne({
         where: {

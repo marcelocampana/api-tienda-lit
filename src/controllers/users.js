@@ -13,6 +13,7 @@ export async function addUser(req, res) {
   }
 }
 export async function getUser(req, res) {
+  console.log("aca", req);
   const result = await User.getUser(req.body);
 
   if (result.success) {
