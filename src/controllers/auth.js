@@ -20,7 +20,7 @@ export function validateToken(token) {
 
 export async function login(req, res) {
   const userExits = await User.getUser(req.body.email);
-  console.log(userExits);
+
   if (userExits.success) {
     const match = await bcrypt.compare(
       req.body.password,
@@ -29,6 +29,13 @@ export async function login(req, res) {
     if (match) {
       const token = createToken(userExits.users);
       const userData = userExits.users.toJSON();
+      const data = {
+        userId: userData.userId,
+        name: userData.name,
+        email: userData.email,
+        role: userData.roleName,
+      };
+
       res.status(200).json({ ...userData, token });
     } else {
       res.status(400).json({ message: "Invalid password" });
@@ -47,6 +54,12 @@ export async function createUser(req, res) {
     if (newUser.success) {
       const token = createToken(newUser.user);
       const userData = newUser.user.toJSON();
+      const data = {
+        userId: userData.userId,
+        name: userData.name,
+        email: userData.email,
+        role: userData.roleName,
+      };
       res.status(200).json({ ...userData, token });
     }
   } else if (result.users) {
