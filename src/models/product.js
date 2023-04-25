@@ -17,6 +17,7 @@ export class Product extends Model {
     try {
       const products = await this.findAll({
         raw: true,
+        order: [["name", "ASC"]],
       });
       return { success: true, products };
     } catch (error) {
@@ -94,6 +95,11 @@ Product.init(
     category_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      default: 0,
     },
   },
   {

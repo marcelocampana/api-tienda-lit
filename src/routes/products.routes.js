@@ -3,6 +3,7 @@ import {
   addProduct,
   getAllProducts,
   getProduct,
+  updateProduct,
 } from "../controllers/products.js";
 
 const router = Router();
@@ -11,7 +12,7 @@ const router = Router();
 router.get("/:id", getProduct);
 router.get("/", getAllProducts);
 router.post("/", addProduct);
-// router.put("/update-category/:id", updateCategory);
+router.put("/:id", updateProduct);
 // router.delete("/delete-category/:id", deleteCategory);
 
 export default router;
