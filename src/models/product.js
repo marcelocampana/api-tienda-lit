@@ -35,6 +35,7 @@ export class Product extends Model {
   }
 
   static async updateProduct(id, data) {
+    console.log(id, data);
     try {
       const product = await this.findByPk(id);
       if (!product) {

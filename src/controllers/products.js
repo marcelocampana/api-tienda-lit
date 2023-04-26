@@ -38,6 +38,7 @@ export async function getAllProducts(req, res) {
 }
 
 export async function updateProduct(req, res) {
+  console.log(req.body);
   const result = await Product.updateProduct(req.params.id, req.body);
   console.log(result);
   if (result.success) {
