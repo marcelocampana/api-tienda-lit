@@ -17,7 +17,7 @@ export async function getProduct(req, res) {
   const result = await Product.getProduct(req.params.id);
 
   if (result.success) {
-    res.status(200).json(result.product);
+    res.status(200).json(result.products);
   } else {
     res
       .status(400)
