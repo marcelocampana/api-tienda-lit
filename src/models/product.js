@@ -1,6 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
-import { Color } from "./color.js";
 import { Category } from "./category.js";
 
 export class Product extends Model {
@@ -16,6 +15,15 @@ export class Product extends Model {
   static async getAllProducts() {
     try {
       const products = await this.findAll({
+        attributes: [
+          "product_id",
+          "name",
+          "price",
+          [sequelize.col("category.name"), "categoryName"],
+          "stock",
+          "image_url",
+        ],
+        include: { model: Category, attributes: [], as: "category" },
         raw: true,
         order: [["name", "ASC"]],
       });

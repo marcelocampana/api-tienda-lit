@@ -9,7 +9,6 @@ export async function addProductToCart(req, res) {
   });
 
   if (result.success) {
-    console.log("lolo2");
     // res.status(201).json(result.shoppingCart);
     res.redirect("/");
   } else {

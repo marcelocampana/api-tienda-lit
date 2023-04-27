@@ -1,7 +1,6 @@
 import { Product } from "../models/product.js";
 
 export async function addProduct(req, res) {
-  console.log(req.body);
   const result = await Product.addProduct(req.body);
 
   if (result.success) {
@@ -27,7 +26,7 @@ export async function getProduct(req, res) {
 
 export async function getAllProducts(req, res) {
   const result = await Product.getAllProducts();
-
+  console.log(result);
   if (result.success) {
     res.status(200).json(result.products);
   } else {
@@ -38,14 +37,25 @@ export async function getAllProducts(req, res) {
 }
 
 export async function updateProduct(req, res) {
-  console.log(req.body);
   const result = await Product.updateProduct(req.params.id, req.body);
-  console.log(result);
   if (result.success) {
     res.status(200).json(result.product);
   } else {
     res
       .status(400)
       .json({ message: "Error updating product", error: result.error });
+  }
+}
+
+export async function deleteProduct(req, res) {
+  const result = await Product.deleteProduct(req.params.id);
+
+  if (result.success) {
+    res.status(200).json({ message: result.message });
+  } else {
+    res.status(400).json({
+      message: result.message || "Error deleting category",
+      error: result.error,
+    });
   }
 }
