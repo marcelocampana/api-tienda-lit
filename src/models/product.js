@@ -70,6 +70,26 @@ export class Product extends Model {
       return { success: false, error };
     }
   }
+
+  static async getCategoriesCount(id) {
+    console.log(id);
+    try {
+      const products = await this.findAll({
+        attributes: [
+          [
+            sequelize.fn("COUNT", sequelize.col("Product.product_id")),
+            "total_productos",
+          ],
+        ],
+        include: { model: Category, attributes: ["name"], as: "category" },
+        group: ["category.name"],
+        raw: true,
+      });
+      return { success: true, products };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
 }
 
 Product.init(

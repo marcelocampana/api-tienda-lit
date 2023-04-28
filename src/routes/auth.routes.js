@@ -4,7 +4,7 @@ import { validateToken, login, createUser } from "../controllers/auth.js";
 const router = Router();
 
 // "/api/v1/auth"
-router.get("/validate-token", validateToken);
+router.post("/valtk", validateToken);
 router.post("/", login);
 router.post("/new-user", createUser);
 

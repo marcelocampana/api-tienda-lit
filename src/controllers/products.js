@@ -26,7 +26,6 @@ export async function getProduct(req, res) {
 
 export async function getAllProducts(req, res) {
   const result = await Product.getAllProducts();
-  console.log(result);
   if (result.success) {
     res.status(200).json(result.products);
   } else {
@@ -57,5 +56,17 @@ export async function deleteProduct(req, res) {
       message: result.message || "Error deleting category",
       error: result.error,
     });
+  }
+}
+
+export async function getCategoriesCount(req, res) {
+  const result = await Product.getCategoriesCount(req.params.id);
+
+  if (result.success) {
+    res.status(200).json(result.products);
+  } else {
+    res
+      .status(400)
+      .json({ message: "Error fetching product", error: result.error });
   }
 }

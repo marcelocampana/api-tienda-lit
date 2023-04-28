@@ -30,10 +30,10 @@ import modelSync from "./utils/modelSync.js";
 // Middlewares
 app.set("port", process.env.PORT || 4000);
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     allowedHeaders: "*",
   })
 );
@@ -51,7 +51,7 @@ app.use(
 app.use("/api/v1/categories", categories);
 app.use("/api/v1/colors", colors);
 app.use("/api/v1/products", products);
-app.use("/api/v1/cart", shoppingCarts);
+app.use("/api/v1/shopping-carts", shoppingCarts);
 app.use("/api/users", users);
 app.use("/api/v1/auth", auth);
 
@@ -70,7 +70,7 @@ app.use("/api/v1/auth", auth);
   // await modelSync(Order);
   // await modelSync(OrderDetail);
   // await modelSync(ShippingMethod);
-  // await modelSync(ShoppingCart);
+  //await modelSync(ShoppingCart);
 
   app.listen(app.get("port"), () => {
     console.log(`Server on http://localhost:${app.get("port")}`);
