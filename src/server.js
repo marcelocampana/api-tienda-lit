@@ -30,22 +30,13 @@ import modelSync from "./utils/modelSync.js";
 // Middlewares
 app.set("port", process.env.PORT || 4000);
 app.use(express.json());
-//app.use(cors());
+
 app.use(
   cors({
     origin: "http://localhost:3000",
     allowedHeaders: "*",
   })
 );
-
-/* app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-}); */
 
 // API Routes
 app.use("/api/v1/categories", categories);
