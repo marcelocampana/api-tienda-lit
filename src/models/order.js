@@ -5,7 +5,34 @@ import { CouponDiscount } from "./couponDiscount.js";
 import { Tax } from "./tax.js";
 import { User } from "./user.js";
 
-export class Order extends Model {}
+export class Order extends Model {
+  static async getOrder(id) {
+    try {
+      const orders = await this.findByPk(id);
+      return { success: true, orders };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
+
+  static async getAllOrders() {
+    try {
+      const orders = await this.findAll();
+      return { success: true, orders };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
+
+  static async addOrder(data) {
+    try {
+      const newOrder = await this.create(data);
+      return { success: true, order: newOrder };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
+}
 Order.init(
   {
     order_id: {
@@ -18,11 +45,27 @@ Order.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    shipping_address: {
+    customer_name: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    billing_address: {
+    customer_email: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    customer_phone: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    customer_postalcode: {
+      type: DataTypes.TEXT,
+    },
+    guest_id: {
+      type: DataTypes.UUID,
+      defaultValue: sequelize.UUIDV4,
+      unique: true,
+    },
+    shipping_address: {
       type: DataTypes.TEXT,
       allowNull: false,
     },

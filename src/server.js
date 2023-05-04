@@ -5,6 +5,8 @@ import {
   auth,
   categories,
   colors,
+  orderDetails,
+  orders,
   products,
   shoppingCarts,
   users,
@@ -45,23 +47,26 @@ app.use("/api/v1/products", products);
 app.use("/api/v1/shopping-carts", shoppingCarts);
 app.use("/api/users", users);
 app.use("/api/v1/auth", auth);
+app.use("/api/v1/orders", orders);
+app.use("/api/v1/order-details", orderDetails);
 
-//DB Sync
+//Sequelize DB Sync
+//Descomentar hará que una tabla se vuelva a crear
 (async function () {
-  // await modelSync(Category);
+  //await modelSync(Category);
   //await modelSync(Role);
   //await modelSync(User);
-  // await modelSync(Color);
-  // await modelSync(Size);
+  //await modelSync(Color);
+  //await modelSync(Size);
   //await modelSync(Product);
-  // await modelSync(Variant);
-  // await modelSync(CouponDiscount);
-  // await modelSync(PaymentMethod);
-  // await modelSync(Tax);
-  // await modelSync(Order);
-  // await modelSync(OrderDetail);
-  // await modelSync(ShippingMethod);
-  //await modelSync(ShoppingCart);
+  //await modelSync(Variant);
+  //await modelSync(CouponDiscount);
+  //await modelSync(PaymentMethod);
+  //await modelSync(Tax);
+  await modelSync(Order);
+  await modelSync(OrderDetail);
+  //await modelSync(ShippingMethod);
+  await modelSync(ShoppingCart);
 
   app.listen(app.get("port"), () => {
     console.log(`Server on http://localhost:${app.get("port")}`);

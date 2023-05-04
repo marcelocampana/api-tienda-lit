@@ -3,7 +3,34 @@ import sequelize from "../services/db_connection.js";
 import { Order } from "./order.js";
 import { Product } from "./product.js";
 
-export class OrderDetail extends Model {}
+export class OrderDetail extends Model {
+  static async getOrderDetail(id) {
+    try {
+      const orders = await this.findByPk(id);
+      return { success: true, orders };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
+
+  static async getAllOrderDetails() {
+    try {
+      const orderDetails = await this.findAll();
+      return { success: true, orderDetails };
+    } catch (error) {
+      return { success: false, errorDetails };
+    }
+  }
+
+  static async addOrderDetail(data) {
+    try {
+      const newOrderDetail = await this.create(data);
+      return { success: true, orderDetail: newOrderDetail };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
+}
 OrderDetail.init(
   {
     order_detail_id: {
