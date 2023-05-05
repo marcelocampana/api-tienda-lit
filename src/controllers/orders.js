@@ -2,7 +2,6 @@ import { Order } from "../models/order.js";
 
 export async function addOrder(req, res) {
   const result = await Order.addOrder(req.body);
-  console.log(result);
   if (result.success) {
     res.status(201).json(result.order);
   } else {

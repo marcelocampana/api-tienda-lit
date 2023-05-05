@@ -72,9 +72,7 @@ export async function getCategoriesCount(req, res) {
 }
 
 export async function getProductRanking(req, res) {
-  console.log("controler");
   const result = await Product.getproductRanking();
-  console.log(result);
   if (result.success) {
     res.status(200).json(result.products);
   } else {

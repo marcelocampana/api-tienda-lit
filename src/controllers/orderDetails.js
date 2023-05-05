@@ -37,7 +37,6 @@ export async function getAllOrderDetails(req, res) {
 
 export async function getProductsByOrder(req, res) {
   const result = await OrderDetail.getProductsByOrder(req.params.id);
-  console.log(result);
   if (result.success) {
     res.status(200).json(result.orders);
   } else {
