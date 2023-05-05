@@ -8,7 +8,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const filePath = __dirname + "/log/connections.txt";
+// unir la ruta actual con la carpeta raíz del proyecto
+const rootDir = path.join(__dirname, "..");
+
+// crear la ruta del archivo dentro de la carpeta raíz
+const filePath = path.join(rootDir, "log", "connections.txt");
 
 function getLocalIP() {
   const networkInterfaces = os.networkInterfaces();
@@ -25,7 +29,7 @@ function getLocalIP() {
 async function appendToFile(filePath, userId) {
   fs.appendFile(
     filePath,
-    `New connection from:${getLocalIP()} on ${new Date()} by user id:${userId}.`,
+    `New connection from:${getLocalIP()} on ${new Date()} by user id:${userId}.\n`,
     function (err) {
       if (err) throw err;
       console.log("El contenido ha sido agregado al archivo.");

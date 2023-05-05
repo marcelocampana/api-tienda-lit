@@ -1,4 +1,4 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, Op } from "sequelize";
 import sequelize from "../services/db_connection.js";
 import { Category } from "./category.js";
 import { OrderDetail } from "./orderDetail.js";

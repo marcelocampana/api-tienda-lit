@@ -12,7 +12,7 @@ export async function addUser(req, res) {
   }
 }
 export async function getUser(req, res) {
-  const result = await User.getUser(req.body);
+  const result = await User.getUser(req.params.email);
 
   if (result.success) {
     res.status(200).json(result.users);

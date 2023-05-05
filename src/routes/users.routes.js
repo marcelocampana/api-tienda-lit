@@ -5,6 +5,6 @@ const router = Router();
 
 // "/api/auth/";
 router.post("/token", addUser);
-router.post("/", getUser);
+router.get("/:email", getUser);
 
 export default router;
