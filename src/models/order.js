@@ -17,7 +17,7 @@ export class Order extends Model {
 
   static async getAllOrders() {
     try {
-      const orders = await this.findAll();
+      const orders = await this.findAll({ order: [["order_id", "DESC"]] });
       return { success: true, orders };
     } catch (error) {
       return { success: false, error };

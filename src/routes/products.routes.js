@@ -5,6 +5,7 @@ import {
   getAllProducts,
   getCategoriesCount,
   getProduct,
+  getProductRanking,
   updateProduct,
 } from "../controllers/products.js";
 
@@ -16,5 +17,6 @@ router.post("/", addProduct);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 router.get("/count/:id", getCategoriesCount);
+router.get("/ranking/product", getProductRanking);
 
 export default router;

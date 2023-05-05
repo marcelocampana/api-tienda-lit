@@ -30,6 +30,28 @@ export class OrderDetail extends Model {
       return { success: false, error };
     }
   }
+
+  static async getProductsByOrder(orderId) {
+    try {
+      const orders = await this.findAll({
+        where: { order_id: orderId },
+        attributes: [
+          [sequelize.col("Product.name"), "product"],
+          [sequelize.col("Product.price"), "price"],
+          [sequelize.col("Product.image_url"), "image_url"],
+          "OrderDetail.quantity",
+        ],
+        include: {
+          model: Product,
+          attributes: [],
+        },
+        raw: true,
+      });
+      return { success: true, orders };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
 }
 OrderDetail.init(
   {
@@ -61,8 +83,3 @@ OrderDetail.init(
 
 OrderDetail.belongsTo(Order, { foreignKey: "order_id", onDelete: "CASCADE" });
 Order.hasMany(OrderDetail, { foreignKey: "order_id", onDelete: "CASCADE" });
-OrderDetail.belongsTo(Product, {
-  foreignKey: "product_id",
-  onDelete: "CASCADE",
-});
-Product.hasMany(OrderDetail, { foreignKey: "product_id", onDelete: "CASCADE" });

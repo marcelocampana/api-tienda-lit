@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../services/db_connection.js";
 import { Category } from "./category.js";
+import { OrderDetail } from "./orderDetail.js";
 
 export class Product extends Model {
   static async getProduct(id) {
@@ -43,7 +44,6 @@ export class Product extends Model {
   }
 
   static async updateProduct(id, data) {
-    console.log(id, data);
     try {
       const product = await this.findByPk(id);
       if (!product) {
@@ -72,7 +72,6 @@ export class Product extends Model {
   }
 
   static async getCategoriesCount(id) {
-    console.log(id);
     try {
       const products = await this.findAll({
         attributes: [
@@ -84,6 +83,36 @@ export class Product extends Model {
         include: { model: Category, attributes: ["name"], as: "category" },
         group: ["category.name"],
         raw: true,
+      });
+      return { success: true, products };
+    } catch (error) {
+      return { success: false, error };
+    }
+  }
+
+  static async getproductRanking() {
+    try {
+      const products = await this.findAll({
+        attributes: [
+          "Product.product_id",
+          "Product.name",
+          "Product.image_url",
+          [
+            sequelize.fn(
+              "SUM",
+              sequelize.fn(
+                "COALESCE",
+                sequelize.col("OrderDetails.quantity"),
+                0
+              )
+            ),
+            "quantity",
+          ],
+        ],
+        include: { model: OrderDetail, attributes: [] },
+        group: ["Product.product_id"],
+        raw: true,
+        order: [["quantity", "DESC"]],
       });
       return { success: true, products };
     } catch (error) {
@@ -138,3 +167,9 @@ Product.init(
     underscored: true,
   }
 );
+
+OrderDetail.belongsTo(Product, {
+  foreignKey: "product_id",
+  onDelete: "CASCADE",
+});
+Product.hasMany(OrderDetail, { foreignKey: "product_id", onDelete: "CASCADE" });

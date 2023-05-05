@@ -2,9 +2,6 @@ export default class LoginManager {
   constructor(apiUrl) {
     this.apiUrl = `${process.env.API_HOSTNAME}${apiUrl}`;
   }
-  encryptPassword(passwordToEncrypt) {
-    console.log(passwordToEncrypt);
-  }
 
   checkPassword(passwordToCheck, storedPassword) {
     return originalPassword === passwordToCheck ? true : false;
@@ -24,7 +21,6 @@ export default class LoginManager {
         const user = await response.json();
 
         if (user) {
-          console.log(user);
           return !this.checkPassword(credentials.password, user.password)
             ? "Usuario y/o contraseña incorrectos"
             : "Usuario encontrado";

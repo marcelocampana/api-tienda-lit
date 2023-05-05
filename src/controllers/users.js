@@ -1,7 +1,6 @@
 import { User } from "../models/user.js";
 
 export async function addUser(req, res) {
-  console.log(req.body);
   const result = await User.addUser(req.body);
 
   if (result.success) {
@@ -13,7 +12,6 @@ export async function addUser(req, res) {
   }
 }
 export async function getUser(req, res) {
-  console.log("aca", req);
   const result = await User.getUser(req.body);
 
   if (result.success) {

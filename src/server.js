@@ -63,10 +63,10 @@ app.use("/api/v1/order-details", orderDetails);
   //await modelSync(CouponDiscount);
   //await modelSync(PaymentMethod);
   //await modelSync(Tax);
-  await modelSync(Order);
-  await modelSync(OrderDetail);
+  //await modelSync(Order);
+  // await modelSync(OrderDetail);
   //await modelSync(ShippingMethod);
-  await modelSync(ShoppingCart);
+  // await modelSync(ShoppingCart);
 
   app.listen(app.get("port"), () => {
     console.log(`Server on http://localhost:${app.get("port")}`);

@@ -13,10 +13,10 @@ export async function addOrderDetail(req, res) {
 }
 
 export async function getOrderDetail(req, res) {
-  const result = await OrderDetail.getAllOrderDetails(req.params.id);
+  const result = await OrderDetail.getOrderDetail(req.params.id);
 
   if (result.success) {
-    res.status(200).json(result.orderDetails);
+    res.status(200).json(result.orders);
   } else {
     res
       .status(400)
@@ -28,6 +28,18 @@ export async function getAllOrderDetails(req, res) {
   const result = await OrderDetail.getAllOrderDetails();
   if (result.success) {
     res.status(200).json(result.orderDetails);
+  } else {
+    res
+      .status(400)
+      .json({ message: "Error fetching order details", error: result.error });
+  }
+}
+
+export async function getProductsByOrder(req, res) {
+  const result = await OrderDetail.getProductsByOrder(req.params.id);
+  console.log(result);
+  if (result.success) {
+    res.status(200).json(result.orders);
   } else {
     res
       .status(400)

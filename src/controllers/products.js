@@ -70,3 +70,16 @@ export async function getCategoriesCount(req, res) {
       .json({ message: "Error fetching product", error: result.error });
   }
 }
+
+export async function getProductRanking(req, res) {
+  console.log("controler");
+  const result = await Product.getproductRanking();
+  console.log(result);
+  if (result.success) {
+    res.status(200).json(result.products);
+  } else {
+    res
+      .status(400)
+      .json({ message: "Error ranking product", error: result.error });
+  }
+}

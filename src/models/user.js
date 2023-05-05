@@ -5,7 +5,6 @@ import { hashPassword } from "../utils/hashPassword.js";
 
 export class User extends Model {
   static async getUser(email) {
-    console.log("data-getUser", email);
     try {
       const users = await User.findOne({
         where: {
